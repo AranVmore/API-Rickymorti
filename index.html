@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API RICK Y MORTI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="test"></div>
+        <hr>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="index.html">API RICK&MORTY</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item-espacio">
+                    <select class="form-select" aria-label="Default select example" name="pagina" id="pagina" onchange="pag(this.value)">
+                    </select>
+                  </li>
+                  <li class="nav-item">
+                    <button class="btn btn-outline-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">FILTROS</button>
+                  </li>
+                </ul>
+                <form class="d-flex" role="search" action="" onsubmit="buscador(event)">
+                  <input class="form-control me-2" name="personaje" type="text" placeholder="Buscador" aria-label="Search">
+                  <button class="btn btn-outline-info" type="submit">Search</button>
+                </form>
+              </div>
+            </div>
+          </nav>
+          <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasTopLabel">Seleccione las opciones</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <div class="accordion" id="accordionExample">
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                      ESTADO PERSONAJE
+                    </button>
+                  </h2>
+                  <form class="d-flex" role="search" action="" onsubmit="filtroStatus(event)">
+                  <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="Alive" id="Alive">
+                        <label class="form-check-label" for="Alive">
+                          Vivo - Alive
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="Dead" id="Dead">
+                        <label class="form-check-label" for="Dead">
+                          Muerto - Dead
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="unknown" id="unknown">
+                        <label class="form-check-label" for="unknown">
+                          Desconocido - Unknown
+                        </label>
+                      </div>
+                      <br>                      
+                      <div class="d-flex">
+                        <button id="aplicar" type="submit" class="btn btn-info d-flex justify-content-center">Aplicar</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      ESPECIE PERSONAJE
+                    </button>
+                  </h2>
+                  <form class="d-flex" role="search" action="" onsubmit="filtroSpecies(event)">
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="status" value="Alien" id="Alien">
+                          <label class="form-check-label" for="Alien">
+                            Alien
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="status" value="Animal" id="Animal">
+                          <label class="form-check-label" for="Animal">
+                            Animal
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="status" value="Mythological Creature" id="Mythological Creature">
+                          <label class="form-check-label" for="Mythological Creature">
+                            Criatura mitológica - Mythological Creature
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="status" value="Cronenberg" id="Cronenberg">
+                          <label class="form-check-label" for="Cronenberg">
+                            Cronenberg
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="status" value="Unknown" id="Unknown">
+                          <label class="form-check-label" for="Unknown">
+                            Desconocido - Unknown
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="status" value="Disease" id="Disease">
+                          <label class="form-check-label" for="Disease">
+                            Disease
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="status" value="Human" id="Human">
+                          <label class="form-check-label" for="Human">
+                            Humano - human
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="status" value="Humanoid" id="Humanoid">
+                          <label class="form-check-label" for="Humanoid">
+                            Humanoide - Humanoid
+                          </label>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="status" value="Robot" id="Robot">
+                          <label class="form-check-label" for="Robot">
+                            Robot
+                          </label>
+                        </div>
+                        <br>                      
+                        <div class="d-flex">
+                          <button id="aplicar" type="submit" class="btn btn-info d-flex justify-content-center">Aplicar</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      GÉNERO PERSONAJE
+                    </button>
+                  </h2>
+                  <form class="d-flex" role="search" action="" onsubmit="filtroGender(event)">
+                  <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="Female" id="Female">
+                        <label class="form-check-label" for="Female">
+                          Mujer - female
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="male" id="male">
+                        <label class="form-check-label" for="male">
+                          Hombre - male
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="genderless" id="genderless">
+                        <label class="form-check-label" for="genderless">
+                          Sin género - genderless
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="unknown" id="unknown">
+                        <label class="form-check-label" for="unknown">
+                          Desconocido - unknown
+                        </label>
+                      </div>
+                      <br>                      
+                      <div class="d-flex">
+                        <button id="aplicar" type="submit" class="btn btn-info d-flex justify-content-center">Aplicar</button>
+                      </div>
+                    </div>
+                  </div>
+                  </form>
+                </div>
+
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                      TIPO PERSONAJE
+                    </button>
+                  </h2>
+                  <form class="d-flex" role="search" action="" onsubmit="filtroType(event)">
+                  <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="" id="">
+                        <label class="form-check-label" for="">
+                          Sin tipo - Tipeless
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="Alphabetrian" id="Alphabetrian">
+                        <label class="form-check-label" for="Alphabetrian">
+                          Alphabetrian
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="Demon" id="Demon">
+                        <label class="form-check-label" for="Demon">
+                          Demonio - Demon
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="Genetic experiment" id="Genetic experiment">
+                        <label class="form-check-label" for="Genetic experiment">
+                          Experimento genético - Genetic experiment
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="Cat" id="Cat">
+                        <label class="form-check-label" for="Cat">
+                          Gato - Cat
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="Gazorpian" id="Gazorpian">
+                        <label class="form-check-label" for="Gazorpian">
+                          Gazorpian
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="Human with antennae" id="Human with antennae">
+                        <label class="form-check-label" for="Human with antennae">
+                          Humano con antenas - Human with antennae
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="Human with antennae" id="Human with antennae">
+                        <label class="form-check-label" for="Human with antennae">
+                          Humano con hormigas en los ojos - Human with ants in his eyes
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="Mytholog" id="Mytholog">
+                        <label class="form-check-label" for="Mytholog">
+                          Mitológico - Mytholog
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="Parasite" id="Parasite">
+                        <label class="form-check-label" for="Parasite">
+                          Parásito - Parasite
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="Robot-Crocodile hybrid" id="Robot-Crocodile hybrid">
+                        <label class="form-check-label" for="Robot-Crocodile hybrid">
+                          Robot-Cocodrilo híbrido - Robot-Crocodile hybrid
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="Time God" id="Time God">
+                        <label class="form-check-label" for="Time God">
+                          Time God
+                        </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="radio" name="status" value="Zigerion" id="Zigerion">
+                        <label class="form-check-label" for="Zigerion">
+                          Zigerion
+                        </label>
+                      </div>
+                      <br>                      
+                      <div class="d-flex">
+                        <button id="aplicar" type="submit" class="btn btn-info d-flex justify-content-center">Aplicar</button>
+                      </div>
+                    </div>
+                  </div>
+                  </form>
+                </div>
+
+              </div>
+              <br>
+            </div>
+          </div>
+        <br>
+
+        <!-- <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center" name="pagina2" id="pagina2" onchange="pag(this.href)">
+            <li class="page-item">
+              <a class="page-link" href="#" id="prev" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#" id="next" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+        </nav> -->
+
+        <div class="row align-items-center justify-content-center" id="card-container">
+        </div>
+    </div>
+    <script src="js/main.js"></script>
+</body>
+</html>
