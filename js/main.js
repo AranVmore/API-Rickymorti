@@ -9,17 +9,13 @@ const test = document.getElementById("test")
 test.appendChild(div)
 
 
-//IMPORTAMOS LOS ELEMENTOS DEL DOCUMENTO QUE UTILIZAREMOS
-const previous = document.querySelector("#previous");
-const next = document.querySelector("#next");
-
 //VARIABLES GLOBALES 
 var typeColors = {
     Dead: '#dc3545',
     Alive: '#198754',
     unknown: '#adb5bd',
 };
-
+// variables que iremos actualizando
 var valuesearch = '';
 var valuestatus = '';
 var valuespecies = '';
@@ -27,7 +23,10 @@ var valuegender = '';
 var valuetype = '';
 var personajename = '';
 
-//fUNCIÓN BOTON APLICAR PARA FILTRADOS
+//fUNCIÓN BOTON APLICAR FILTROS
+// obtenemos el elemento del boton y le añadimos el evento click
+// cuando seleccionemos uno de los input pasará a estar checked 
+// si presionamos sin seleccionar nada mostrará alert
 document.getElementById('aplicar').addEventListener('click', function() {
     let elementoActivo = document.querySelector('input[name="status"]:checked');
     if(elementoActivo) {
@@ -161,6 +160,7 @@ const pag = async (pagina) => {
     }
 
 }
+// comenzamos desde la página 1
 pag(1);
 
 
